@@ -1,0 +1,38 @@
+{
+  "name": "social-media",
+  "version": "1.0.0",
+  "description": "Social media management — post creation, scheduling, platform publishing",
+  "category": "social",
+  "entities": {
+    "produces": ["social-post"],
+    "consumes": ["content-asset", "job"],
+    "extends": {}
+  },
+  "tools": [
+    { "name": "create-post", "description": "Create a social media post from a content asset", "permissions": ["content-asset:read", "job:read", "social-post:write"] },
+    { "name": "schedule-post", "description": "Schedule a post for future publishing", "permissions": ["social-post:read", "social-post:write"] },
+    { "name": "publish-post", "description": "Publish a post to the platform", "permissions": ["social-post:write"] }
+  ],
+  "hooks": [
+    { "event": "ContentAssetCreated", "action": "auto-create-draft-post", "type": "post" }
+  ],
+  "dependencies": ["content-engine"],
+  "externalServices": [
+    { "name": "meta-api", "required": false },
+    { "name": "google-business-api", "required": false }
+  ],
+  "config": {
+    "platforms": { "type": "string", "default": "instagram,facebook,google-business" },
+    "auto_post_on_job_complete": { "type": "boolean", "default": false },
+    "posting_schedule": { "type": "string", "default": "weekdays-10am" }
+  },
+  "agents": [],
+  "cron": [
+    {
+      "name": "weekly-content-calendar",
+      "schedule": "0 9 * * 1",
+      "action": "plan-weekly-content",
+      "description": "Plan next week's social media content calendar"
+    }
+  ]
+}

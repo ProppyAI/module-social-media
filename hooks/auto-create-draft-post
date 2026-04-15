@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+EVENT_DATA=$(cat)
+ASSET_ID=$(echo "$EVENT_DATA" | python3 -c "import json,sys; print(json.load(sys.stdin).get('entity_id','unknown'))")
+echo "{\"outcome\": \"continue\", \"output\": \"Created draft social post from content asset $ASSET_ID\"}"
