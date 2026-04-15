@@ -1,0 +1,27 @@
+{
+  "vertical": "",
+  "client": "",
+  "channels": {
+    "rc": { "enabled": true },
+    "discord": { "enabled": false },
+    "slack": { "enabled": false },
+    "imessage": { "enabled": false },
+    "telegram": { "enabled": false, "bot_token_env": "HARNESS_TELEGRAM_TOKEN" }
+  },
+  "model": "claude-sonnet-4-6",
+  "auto_pr": true,
+  "hybrid_threshold": 0.7,
+  "modules": {
+    "enabled": [],
+    "config": {}
+  },
+  "permissions": {
+    "mode": "supervised",
+    "rules": []
+  },
+  "hooks": {
+    "timeout": 30,
+    "enabled": true
+  },
+  "integrations": {}
+}

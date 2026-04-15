@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.harness.proppyai.com/entities/v1/content-asset.schema.json",
+  "title": "Content Asset",
+  "description": "A generated or rendered content artifact — image, video, voiceover, proposal, or document",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "type": { "type": "string", "enum": ["image", "video", "voiceover", "proposal", "invoice-doc"] },
+    "title": { "type": "string" },
+    "format": { "type": "string", "enum": ["png", "jpg", "mp4", "mp3", "pdf", "html"] },
+    "url": { "type": "string", "description": "URL or local path to the asset" },
+    "prompt": { "type": "string", "description": "Generation prompt used (if AI-generated)" },
+    "model": { "type": "string", "description": "fal.ai model used for generation" },
+    "job_id": { "type": "string", "format": "uuid" },
+    "client_id": { "type": "string", "format": "uuid" },
+    "feedback": { "type": ["string", "null"], "enum": [null, "liked", "disliked", "edited"] },
+    "feedback_notes": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["id", "type", "title", "format", "created_at"]
+}
